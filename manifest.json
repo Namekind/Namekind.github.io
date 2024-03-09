@@ -2,11 +2,11 @@
   "manifest_version": 3,
   "name": "Piccolo",
   "short_name": "Piccolo",
-  "description": "We made Something and named it Pikkoro!",
+  "description": "We made Something Cool😎 and named it Pikkoro!",
   "version": "1.0",
   "start_url": "/Namekind.github.io/index.html",
   "orientation": "any",
-  "display": "fullscreen",
+  "display": "standalone",
   "background_color": "#111",
   "theme_color": "#8a2be2",
   "icons": [
@@ -25,5 +25,9 @@
     "entertainment",
     "media"
   ],
-  "splash_pages": null
+  "splash_pages": null,
+  "scope": "/",
+  "permissions": [],
+  "serviceworker": {
+    "src": "/sw.js"
 }
