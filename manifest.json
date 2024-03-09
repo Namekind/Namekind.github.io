@@ -1,15 +1,33 @@
 {
   "manifest_version": 3,
-  "name": "Piccolo",
+  "name": "Pikkoro Video Streaming",
   "short_name": "Piccolo",
-  "description": "We made Something Cool😎 and named it Pikkoro!",
-  "version": "1.0",
-  "start_url": "/Namekind.github.io/index.html",
-  "orientation": "any",
+  "start_url": "/",
   "display": "standalone",
+  "theme_color": " #8A2BE2",
   "background_color": "#111",
-  "theme_color": "#8a2be2",
+  "orientation": "any",
+  "description": "We just cured boredom and depression with a PWA...",
+  "permissions": [],
+  "serviceworker": {
+    "src": "/sw.js"
+  }
   "icons": [
+    {
+      "src": "appicon.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "appicon.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "appicon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
     {
       "src": "appicon.png",
       "sizes": "192x192",
@@ -26,8 +44,12 @@
     "media"
   ],
   "splash_pages": null,
-  "scope": "/",
-  "permissions": [],
-  "serviceworker": {
-    "src": "/sw.js"
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.piccolo.streaming",
+      "id": "com.piccolo.streaming"
+    }
+  ],
+  "prefer_related_applications": true
 }
