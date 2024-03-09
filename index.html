@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>imaandworld💚</title>
+      <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+  <!-- HTML -->
+  
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.js'></script>
+  <!-- HTML -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.5/js.cookie.min.js" integrity="sha512-nlp9/l96/EpjYBx7EP7pGASVXNe80hGhYAUrjeXnu/fyF5Py0/RXav4BBNs7n5Hx1WFhOEOWSAVjGeC3oKxDVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  
+<div id="app">
+  <router-view></router-view>
+</div>
+<template id="landingPage-template">
+  <transition name="fade">
+
+    <div>
+<h1 id="Majorlogo">Piccolo</h1>
+<p id="berry">God with us</p>
+
+      <button  id="watchbtn" class="button" @click="$router.push('/Login')">Watch</button>
+    </div>
+  </transition>
+</template>
+<template id="Login-template">
+      <transition name="fade">
+      <div class="loginpage">
+  <form @submit.prevent="loginUser">
+          <div id="login-contents">
+            <div Id="login-header">
+              <h1 class="logo">Piccolo</h1>
+            <button id="signupbtn" class="button" @click="$router.push('/SignUp')">Sign Up</button>
+            </div>
+            <div class="text-area">
+              <p>welcome back!</p>
+              <h2>Piccolo has some <br> exciting New Contents <br>just for you</h2>
+              <p>No pressure, Simply Log back in and enjoy endless Binge Worthiness!</p>
+            </div>
+            <div class="form-group">
+              <div class="row">
+  <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-sm"><i class="fa-regular fa-envelope fa-lg" style="color: #000000;"></i> Email</label>
+  <div class="col-sm-10">
+  <input class="form-control form-control-lg" v-model="email" type="email" placeholder="example@gmail.com" id="email">
+  </div>
+</div>
+<div class="row">
+  <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-sm"><i class="fa-solid fa-lock fa-lg" style="color: #000000;"></i> Password</label>
+  <div class="col-sm-10">
+  <input class="form-control form-control-lg" v-model="password" type="password" placeholder="******" id="password"> 
+  </div>
+</div>
+            </div>
+          </div>
+          <div Id="form-final">
+        <button class="submit" type="submit" id="loginButton">Log In</button>
+
+          </div>
+ </form>
+                  <div id="footer-login">
+          <p>Don't have an account? <button id="footerbtn" class="button" @click="$router.push('/SignUp')">Sign Up Here!</button> </p>
+        <p>Forgot Password? <button id="footerbtn" class="button" @click="$router.push('/Password')">Recover Password!</button></p>
+        </div>
+        <div id="message-container" :class="{ 'success-message': successMessage, 'error-message': errorMessage }">
+        {{ message }}
+      </div>
+        </div>
+
+      </transition>
+    </template>
+<template id="SignUp-template">
+      <transition name="fade">
+          <div class="signuppage">
+        <form @submit.prevent="handleSignup">
+          <div id="signup-contents">
+            <div Id="signup-header">
+              <h1 class="logo">Piccolo</h1>
+            <button id="signupbtn" class="button" @click="$router.push('/Login')">Log In</button>
+            </div>
+            <div class="text-area">
+              <p>Tell us a little about yourself</p>
+              <h2>Create an Account<br>Get access</h2>
+              <p>Take your time, just this step and you're done!</p>
+            </div>
+            <div class="form-group">
+              <div class="row g-3">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label"><i class="fa-regular fa-envelope fa-lg" style="color: #000000;"></i> Email</label>
+  <input class="form-control form-control-lg" type="email" id="email" v-model="email" placeholder="Enter your email" required>
+  </div>
+  <div class="col-12">
+    <label for="inputPassword4" class="form-label"><i class="fa-solid fa-lock fa-lg" style="color: #000000;"></i> Password</label>
+  <input class="form-control form-control-lg" type="password" id="password" v-model="password" placeholder="Create a password" required>
+  </div>
+</div>
+              
+              
+            </div>
+          </div>
+          <div Id="form-final">
+        <button type="submit" class="signup-btn">Sign Up</button>
+          </div>
+</form>
+                  <div id="footer-signup">
+          <p>Already have an account? <button id="footerbtn" class="button" @click="$router.push('/Login')">Go back to Login!</button> </p>
+        <p>Forgot Password? <button id="footerbtn" class="button" @click="$router.push('/Password')">Recover Password!</button></p>
+        </div>
+        <div id="message-container" :class="{ 'success-message': successMessage, 'error-message': errorMessage }">
+        {{ message }}
+      </div>
+        </div>
+      </transition>
+    </template>
+<template id="Password-template">
+  <transition name="fade">
+    <div class="passwordpage">
+      <div id="password-contents">
+        <div Id="login-header">
+          <h1 class="logo">Piccolo</h1>
+          <button id="signupbtn" class="button" @click="$router.push('/Login')">Log in</button>
+        </div>
+        <div class="text-area">
+          <p>Forgot your password?</p>
+          <h2>We'll help you get<br> a new one!</h2>
+          <p>Please provide the email you used in creating your account below</p>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <label for="email" class="col-sm-2 col-form-label col-form-label-sm"><i class="fa-regular fa-envelope fa-lg" style="color: #000000;"></i> Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control form-control-lg" id="email" placeholder="example@gmail.com" v-model="email">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="form-final">
+        <button class="submit" @click="recoverPassword">Recover Password</button>
+      </div>
+      <div id="footer-login">
+        <p>Don't have an account? <button id="footerbtn" class="button" @click="$router.push('/Signup')">Sign Up Here!</button> </p>
+        <p>Remembered your password? <button id="footerbtn" class="button" @click="$router.push('/Login')">Return to Log In</button></p>
+      </div>
+      <div id="message-container" :class="{ 'success-message': successMessage, 'error-message': errorMessage }">
+        {{ message }}
+      </div>
+    </div>
+  </transition>
+</template>
+<template id="Subscription-template">
+  <transition name="bounce">
+    <div class="container" id="sub-pages">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center py-5">
+            <h1 id="partner">Stageseller <i class="fab fa-angellist text-primary"></i></h1>
+            <p class="lead">Piccolo's Official Payment Partner</p>
+          </div>
+          <div  id="sub-card" class="card border-primary rounded-lg">
+            <div class="card-header bg-primary text-white text-center">
+              <h2 class="mb-0">Unlock Endless Entertainment for N500/Month</h2>
+            </div>
+            <form @submit.prevent="handlePasskeySubmission">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <h4 class="mb-3">Simple Steps to Subscribe:</h4>
+                  <ol class="list-group">
+                    <li class="list-group-item">
+                      <i class="fas fa-money-bill-wave-alt"></i> Make Payment to the Bank Account
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-receipt"></i> Send Payment Proof (Screenshot or PDF) to our Official WhatsApp Contact
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-key"></i> Receive Your Passkey and Enter It Below
+                    </li>
+                    <li class="list-group-item">
+                      <i class="fas fa-check-circle"></i> Enjoy Piccolo!
+                    </li>
+                  </ol>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="mb-3">Payment Information:</h4>
+                  <ul class="list-group">
+                    <li class="list-group-item">Bank: Best Star Microfinance Bank (Beststar MFB)</li>
+                    <li class="list-group-item">Account Name: Stageseller</li>
+                    <li class="list-group-item">Account Number: 7069490226</li>
+                    <li class="list-group-item">Amount: N500 Only</li>
+                  </ul>
+<button id="sub-btn"><a href="https://wa.me/+2347069490226?" target="_blank">
+  <i class="fa-brands fa-whatsapp fa-lg" style="color: #ffffff;"></i> Send Payment Proof Here</a>
+</button>
+                  <div class="input-group mb-3">
+                <input class="form-control me-2" type="text" id="passkey" v-model="passkey" required placeholder="Enter Your Passkey Here">
+                   
+                <button id="subbtn" type="submit-key" class="btn btn-primary submit-btn">Subscribe</button>
+                  </div>
+                </div>
+        <button @click="quitSubscription" id="quitBtn" class="btn btn-secondary">Log out & Switch Accounts</button>
+              </div>
+            </div>
+                </form>
+            <div class="card-footer bg-light text-center">
+              <p class="mb-0">
+                StageSeller makes subscriptions easy with simple bank transfers or USSD transactions.
+              </p>
+              <p>
+                <i class="fas fa-phone-alt"></i> 24/7 Agent Support Available
+              </p>
+              <p>
+                <a href="https://wa.me/+2347069490226?">Contact Us</a> for any issues, glitches, or feedback. We're here to make your experience seamless!
+              </p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</template>
+<template id="home-template">
+  <transition name="fade">
+    <div>
+<header class="sticky-header">
+    <div class="logo">Piccolo</div>
+    <nav>
+            <ul>
+      <button @click="refreshData" class="btn btn-round btn-transparent">
+    <i class="fas fa-sync-alt" style="color:#111"></i></button>
+
+        <button><i data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" class="fa fa-search fa-2xl"></i></button>
+        <button data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive"><i class="fa fa-circle-user fa-2xl"></i></button>
+      </ul>
+    </nav>
+  </header>
+ <div id="main">
+<h2 class="majortext"><i class="fas fa-mug-hot"></i> Now Playing</h2>
+      <!-- Main Movies Section -->
+      <div id="zuko" class="movies" v-if="movies.length > 0">
+        <div class="movie-card" v-for="movie in movies" :key="movie.title" @click="handleCardClick(movie.title)">
+          <img :src="movie.posterUrl" alt="Movie Poster" loading="lazy">
+          <h2>{{ movie.title }}</h2>
+          <p>{{ movie.tagline }}</p>
+          <p>{{ movie.genre }}</p>
+          <p style="color:gold" class="rating"><span v-html="displayRating(movie.rating)"></span></p>
+          <!-- Add more details like synopsis, release date, etc. if needed -->
+        </div>
+      </div>
+      <div v-else>
+          <div id="higher">
+            <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+   <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+ <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+      </div>
+      
+      <!-- Coming Soon Section -->
+  <h2 class="majortext"><i class="fa-solid fa-clock" style="color: #ffffff;"></i> Coming Soon</h2>
+<div id="comingSoonSection" style="background-image: url('https://image.tmdb.org/t/p/original/rtYQCa2NzX8RspbOmwfAla6BemO.jpg');">
+<div v-if="isLoading" class="loading-animation">Loading...</div>
+    <div v-else class="video-container">
+      <iframe v-for="(video, index) in videos" :key="index" :src="getVideoEmbedUrl(video)" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div> 
+<div class="ad-card animated fadeIn">
+    <h2>Refer Friends to Piccolo and Earn Cash! 📣</h2>
+    <p>Tell your friends about Piccolo! Refer 10 people and get <strong>₦1000</strong>, or refer 50 and get <strong>₦5000</strong>... 💸🎉</p>
+    <p>Don't dull! Start referring now and make cool cash! E go sweet you well well! 😉🚀</p>
+    <a  href="https://wa.me/+2347069490226?text=Please Send me my Referal link" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+</div> 
+      
+      
+      <!-- Binge Movies Section -->
+    <h2 class="majortext"><i class="fas fa-burger"></i> Marathon</h2>
+      <div id="bolo" class="section">
+        <div class="movies" v-if="bingeMovies.length > 0">
+          <div class="movie-card" v-for="movie in bingeMovies" :key="movie.title" @click="handleCardClick(movie.title)">
+            <img :src="movie.posterUrl" alt="Movie Poster" loading="lazy">
+            <h3>{{ movie.title }}</h3>
+
+          </div>
+        </div>
+        <div v-else>
+          <div id="higher">
+            <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+   <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+ <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+        </div>
+      </div>
+
+      <!-- Nollywood Movies Section -->
+     <h2 class="majortext"><i class="fas fa-theater-masks"></i> Real Nollywood Drama</h2>
+      <div id="bolo" class="section">
+        <div class="movies" v-if="nollywoodMovies.length > 0">
+          <div class="movie-card" v-for="movie in nollywoodMovies" :key="movie.title" @click="handleCardClick(movie.title)">
+            <img :src="movie.posterUrl" alt="Movie Poster" loading="lazy">
+            <h3>{{ movie.title }}</h3>
+
+          </div>
+        </div>
+        <div v-else>
+          <div id="higher">
+            <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+   <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+ <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+        </div>
+      </div>
+
+
+ <!-- TV Series Section -->
+<h2 class="majortext"><i class="fa-solid fa-puzzle-piece"></i> Binge-worthy Shows</h2>
+      <div id="bolo" class="section">
+        <div class="series" v-if="tvSeries.length > 0">
+          <div class="series-card" v-for="series in tvSeries" :key="series.title" @click="handleSeriesCardClick(series.title)">
+            <img :src="series.posterUrl" alt="Series Poster" loading="lazy">
+            <h3>{{ series.title }}</h3>
+          </div>
+        </div>
+        <div v-else>
+          <div id="higher">
+            <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+   <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+ <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+        </div>
+      </div>
+      <!-- TV Series Details Modal -->
+
+ 
+      <!-- Cartoons Movies Section -->
+<h2 class="majortext"><i class="fa-solid fa-laugh-beam"></i> Animated Adventures</h2>
+      <div id="bolo" class="section">
+        <div class="movies" v-if="cartoonsMovies.length > 0">
+          <div class="movie-card" v-for="movie in cartoonsMovies" :key="movie.title" @click="handleCardClick(movie.title)">
+            <img :src="movie.posterUrl" alt="Movie Poster" loading="lazy">
+            <h3>{{ movie.title }}</h3>
+          </div>
+        </div>
+        <div v-else>
+          <div id="higher">
+            <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+   <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+ <div class="Loadmovie-container">
+    <div class="Loadmovie-info">
+      <div class="Loadmovie-title"></div>
+      <div class="Loadmovie-details">
+        <div class="Loadmoviegenre"></div>
+        <div class="Loadmoviesynopsis"></div>
+        <div class="Loadmovierating"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+        </div>
+      </div>
+ 
+ 
+
+
+</div>
+<div id="modal-offcanvases">
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header" style="background:#111">
+  <div id="offcanvasExampleLabel" class="logo">Piccolo</div>
+
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+<div class="offcanvas-body" style="background:#111">
+  
+    <div>
+<div class="search-container">
+  <input class="form-control form-control-lg" type="text" id="searchInput" placeholder="Enter a title..." v-model="searchQuery">
+  <button  id="searchButton" @click="handleSearchClick"><i class="fas fa-search"></i></button>
+  <button id="clearButton" @click="clearSearchResults"><i class="fas fa-times-circle"></i></button>
+</div>
+<!-- Search results container -->
+<div class="search-results">
+  <div v-if="searchResults.length > 0">
+    <!-- Display search results cards here -->
+    <div v-for="(result, index) in searchResults" :key="index" class="search-result-card" @click="handleResultCardClick(result)">
+      <!-- Display result card content here -->
+      <img :src="result.data.posterUrl" alt="Poster Image">
+      <p>{{ result.data.title }}</p>
+      <!-- Add more details if needed -->
+    </div>
+  </div>
+  <div v-else>
+    <p>No results found.</p>
+  </div>
+</div>
+<div id="message" class="message"></div>
+    </div>
+</div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
+  <div class="offcanvas-header">
+<div id="offcanvasExampleLabel" class="logo">Piccolo</div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="profile-container">
+        <img src="Avatar.jpg" alt="Avatar" class="avatar">
+        <div @click="logoutUser" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Log Out</div>
+        <div class="subscription-timer"><i class="far fa-clock"></i> Subscription Expires in <span class="countdown-timer">{{ countdownTimer }}</span> days</div>
+        <div class="username"><i class="fas fa-user"></i> <span class="username">{{ username }}</span></div>
+        
+        <div class="piccolo-info">
+        
+            <!-- Information from Piccolo app can be displayed here -->
+        </div>
+    </div>
+  </div>
+</div>
+
+
+      <!-- Series Modal -->
+      <div class="modal fade" id="seriesDetailsModal" tabindex="-1" aria-labelledby="seriesDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div style="background:#111" class="modal-header">
+        <h5 style="color:blueviolet" class="modal-title" id="seriesDetailsModalLabel">Piccolo</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div style="background:#111" class="modal-body">
+        </div>
+      <div style="background:#111" class="modal-footer">
+          <button id="dummy" class="btn btn-secondary">E</button>
+              <button id="dummy" class="btn btn-secondary"><i class="fa-regular fa-closed-captioning" style="color: #ffffff;"></i></button>
+              <button id="dummy" class="btn btn-secondary"><i class="fa-solid fa-audio-description" style="color: #ffffff;"></i></button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- Movie Details Modal -->
+      <div class="modal fade" id="movieDetailsModal" tabindex="-1" aria-labelledby="movieDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-fullscreen">
+          <div class="modal-content">
+            <div style="background:#111" class="modal-header">
+              <h5 style="color:blueviolet" class="modal-title" id="movieDetailsModalLabel">Piccolo</h5>
+<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div style="background:#111" class="modal-body">
+              <!-- Movie details content will be populated here -->
+            </div>
+            <div style="background:#111" class="modal-footer">
+              <button id="dummy" class="btn btn-secondary">E</button>
+              <button id="dummy" class="btn btn-secondary"><i class="fa-regular fa-closed-captioning" style="color: #ffffff;"></i></button>
+              <button id="dummy" class="btn btn-secondary"><i class="fa-solid fa-audio-description" style="color: #ffffff;"></i></button>
+              
+              
+              
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Video Page Modal -->
+<div class="modal fade" id="videoPageModal" tabindex="-1" aria-labelledby="videoPageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div style="background:#04192C; display: flex; justify-content: space-between; align-items: center;" class="modal-header">
+        <h5 class="modal-title" id="videoPageModalLabel">Piccolo</h5>
+       
+      <button type="button" class="btn btn-secondary"  @click="closeVideoPageModal" data-bs-dismiss="modal">Close</button>
+    
+      </div>
+      <div style="background:#04192C" class="modal-body">
+        <!-- Video iframe will be populated here -->
+      </div>
+      <div class="instruction">
+  <p>
+<i class="fa-solid fa-up-right-and-down-left-from-center"></i> Click Fullscreen for a better view.
+    <br>
+    <i class="fas fa-cog"></i> Click on Settings to adjust video quality and save mobile data.
+    <br>
+    <i class="fas fa-mobile-alt"></i> Rotate your phone for landscape view.
+  </p>
+</div>
+
+    </div>
+  </div>
+</div>
+ </div>
+ <footer>
+  We Curate! not Create; at least for now... the rights to the video contents you enjoy on our platform all belong to their respective owners.
+<br>Piccolo made with ☕&❤️ in Cool City street, somewhere in Delta Nigeria.
+ <br>powered by Google. TMDB. Github.
+<br>©Piccolo 2024
+</footer>
+    </div>
+  </transition>
+</template>
+
+
+
+
+
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(function(registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+  }
+</script>
+
+  <!-- Project -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-qFOQ9YFAeGj1gDOuUD61g3D+tLDv3u1ECYWqT82WQoaWrOhAY+5mRMTTVsQdWutbA5FORCnkEPEgU0OF8IzGvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
