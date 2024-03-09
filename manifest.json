@@ -1,8 +1,11 @@
 {
+  "manifest_version": 3,
   "name": "Piccolo",
   "short_name": "Piccolo",
   "description": "We made Something and named it Pikkoro!",
+  "version": "1.0",
   "start_url": "/",
+  "orientation": "any",
   "display": "standalone",
   "background_color": "#111",
   "theme_color": "#8a2be2",
@@ -17,6 +20,10 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "categories": [
+    "entertainment",
+    "media"
   ],
   "splash_pages": null
 }
