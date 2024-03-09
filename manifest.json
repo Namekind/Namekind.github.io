@@ -4,7 +4,7 @@
   "short_name": "Piccolo",
   "description": "We made Something and named it Pikkoro!",
   "version": "1.0",
-  "start_url": "/",
+  "start_url": "/https://namekind.github.io/scaling-octo-fishstick.github.io/index.html/",
   "orientation": "any",
   "display": "standalone",
   "background_color": "#111",
