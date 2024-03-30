@@ -259,9 +259,7 @@ const Home = {
         <div class="subscription-timer"><i class="far fa-clock"></i> Subscription Expires in <span class="countdown-timer">{{ countdownTimer }}</span> days</div>
         <div class="username"><i class="fas fa-user"></i> <span class="username">{{ username }}</span>
         </div>
-<div id="advertbanner">
-<h1>Hello World<h1>
-</div>
+
                 </div>
 <div class="alert-banner">
         <p><i class="fas fa-exclamation-circle"></i> Piccolo is under development. Version 7 is live!</p>
